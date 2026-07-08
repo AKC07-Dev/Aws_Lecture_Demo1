@@ -26,7 +26,7 @@ jobs:
             git pull
 
             echo "Stopping old Flask application..."
-            pkill -f app.py || true
+            ps -ef | grep "python app.py" | grep -v grep | awk '{print $2}' | xargs -r kill -9
 
             echo "Starting Flask application..."
             nohup ~/Aws_Lecture_Demo1/venv/bin/python app.py > flask.log 2>&1 < /dev/null &
